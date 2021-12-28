@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SehirRehberi.API.Data;
 using SehirRehberi.API.Models;
+using AutoMapper;
 
 namespace SehirRehberi.API
 {
@@ -29,6 +30,7 @@ namespace SehirRehberi.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddAutoMapper(typeof(Startup));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddCors();
             services.AddScoped<IAppRepository, AppRepository>();
